@@ -2,11 +2,19 @@
   "name": "ai-sdk-course",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "license": "ISC",
   "author": "",
-  "license": "ISC"
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": ">=25.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsx": "tsx --env-file=.env"
+  },
+  "dependencies": {
+    "@types/node": "^24.10.2",
+    "tsx": "^4.21.0"
+  }
 }
