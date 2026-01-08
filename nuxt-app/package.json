@@ -13,6 +13,7 @@
     "db:migrate": "nuxt db migrate"
   },
   "dependencies": {
+    "@ai-sdk/devtools": "^0.0.4",
     "@ai-sdk/gateway": "^3.0.4",
     "@ai-sdk/google": "^3.0.6",
     "@ai-sdk/vue": "^3.0.5",
