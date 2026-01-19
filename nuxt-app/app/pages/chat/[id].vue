@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DefineComponent } from 'vue'
 import { Chat } from '@ai-sdk/vue'
-import { DefaultChatTransport } from 'ai'
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithToolCalls } from 'ai'
 import type { UIMessage } from 'ai'
 import { useClipboard } from '@vueuse/core'
 import { getTextFromMessage } from '@nuxt/ui/utils/ai'
@@ -56,9 +56,21 @@ const chat = new Chat({
       model: model.value
     }
   }),
+  sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
   onData: (dataPart) => {
     if (dataPart.type === 'data-chat-title') {
       refreshNuxtData('chats')
+    }
+  },
+  onToolCall({ toolCall }) {
+    console.log('toolCall', toolCall)
+    if (toolCall.dynamic) return
+    if (toolCall.toolName === 'getUserAgent') {
+      chat.addToolOutput({
+        tool: toolCall.toolName,
+        toolCallId: toolCall.toolCallId,
+        output: window.navigator.userAgent
+      })
     }
   },
   onError(error) {

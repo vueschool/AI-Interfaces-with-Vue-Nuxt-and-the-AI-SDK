@@ -104,7 +104,8 @@ export default defineEventHandler(async (event) => {
         experimental_transform: smoothStream({ chunking: 'word' }),
         tools: {
           weather: weatherTool,
-          chart: chartTool
+          chart: chartTool,
+          getUserAgent: getUserAgentTool
         }
       })
 
